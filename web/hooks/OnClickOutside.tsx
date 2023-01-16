@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function useMouseClickRegistration() {
     const [mouseIsDown, setMouseDown] = useState(false);
     const [mouseInitialXPosition, setMouseInitialXPosition] = useState(0);
     const [mouseMovePercentage, setMouseMovePercentage] = useState(0);
     const [previousPercentage, setPrevPercentage] = useState(0);
-    const ref = useRef<HTMLDivElement>(null);
 
     const handleMouseDown = (event: MouseEvent) => {
         setMouseInitialXPosition(event.clientX);
@@ -33,7 +32,7 @@ export default function useMouseClickRegistration() {
         if(mouseInitialXPosition === 0) return;
         if(mouseIsDown){
             const mouseDelta = mouseInitialXPosition - event.clientX;
-            const maxDelta = window.innerWidth / 2;
+            const maxDelta = window.innerWidth / 1;
             const percentage = (mouseDelta / maxDelta) * -100;
             const nextPercentage = Math.max(Math.min(previousPercentage + percentage, 0), -100);
             setMouseMovePercentage(nextPercentage);
@@ -44,7 +43,7 @@ export default function useMouseClickRegistration() {
         if(mouseInitialXPosition === 0) return;
         if(mouseIsDown){
             const mouseDelta = mouseInitialXPosition - event.touches[0].clientX;
-            const maxDelta = window.innerWidth / 2;
+            const maxDelta = window.innerWidth / 1;
             const percentage = (mouseDelta / maxDelta) * -100;
             const nextPercentage = Math.max(Math.min(previousPercentage + percentage, 0), -100);
             setMouseMovePercentage(nextPercentage);
@@ -68,5 +67,5 @@ export default function useMouseClickRegistration() {
         };
     });
 
-    return { ref, mouseMovePercentage, previousPercentage };
+    return { mouseMovePercentage, previousPercentage };
 }
