@@ -12,7 +12,6 @@ interface IImageGalleryItem{
 function ImageGalleryItem({src, alt, width, height, mouseMovePercentage}:IImageGalleryItem) {
   const imgRef = useRef<HTMLImageElement>(null);
   useEffect( () => {
-    console.log(mouseMovePercentage)
     {imgRef?.current && 
       imgRef.current.animate({
             objectPosition: `${100 + Math.max(mouseMovePercentage*1.2, -100)}% center`
