@@ -14,7 +14,7 @@ function ImageGalleryItem({src, alt, width, height, mouseMovePercentage}:IImageG
   useEffect( () => {
     {imgRef?.current && 
       imgRef.current.animate({
-            objectPosition: `${100 + Math.max(mouseMovePercentage*1.2, -100)}% center`
+            objectPosition: `${100 + Math.max(mouseMovePercentage, -100)}% center`
           }, { duration: 1200, fill: "forwards" });
     }},
     [mouseMovePercentage]);
